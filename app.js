@@ -3,6 +3,17 @@ const app = express()
 
 const hostname = '127.0.0.1'   // set constants
 const port = 3002
+var admin = express();
+admin.on('mount', function(parent){
+  console.log('Admin Mounted');
+  console.log(parent);
+})
+
+admin.get('/',function(res,res){
+  res.send('Admin Homepage');
+})
+
+app.use('/admin',admin);
 
 app.get('/', function (req, res) {
   res.send('Welcome home!')
